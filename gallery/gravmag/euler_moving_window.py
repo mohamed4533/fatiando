@@ -16,9 +16,7 @@ from fatiando import gridder, utils
 from fatiando.gravmag import prism, transform
 from fatiando.gravmag.euler import Classic, MovingWindow
 
-###############################################################################
 # Make some synthetic magnetic data to test our Euler deconvolution.
-
 # The regional field
 inc, dec = -45, 0
 # Make a model of two prisms magnetized by induction only
@@ -39,7 +37,6 @@ xderiv = transform.derivx(x, y, data, shape)
 yderiv = transform.derivy(x, y, data, shape)
 zderiv = transform.derivz(x, y, data, shape)
 
-###############################################################################
 # Now we can run our Euler solver on a moving window over the data.
 # Each window will produce an estimated point for the source.
 # We use a structural index of 3 to indicate that we think the sources are
@@ -51,11 +48,10 @@ solver = MovingWindow(euler, windows=(10, 10), size=(1000, 1000))
 # Use the fit() method to obtain the estimates
 solver.fit()
 
-###############################################################################
 # Plot the solutions on top of the magnetic data. Remember that the true depths
 # of the center of these sources is 1500 m.
 
-plt.figure()
+plt.figure(figsize=(6, 5))
 plt.title('Euler deconvolution results')
 plt.contourf(y.reshape(shape), x.reshape(shape), data.reshape(shape), 30,
              cmap="RdBu_r")
