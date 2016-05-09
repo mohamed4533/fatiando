@@ -317,4 +317,5 @@ Read :ref:`all announcements <news>`.
     develop.rst
     contributors.rst
     cookbook.rst
+    gallery/index.rst
     docs.rst
