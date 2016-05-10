@@ -52,6 +52,9 @@ script:
 after_success:
     - coveralls
     - bash ci-tools/update-website.sh
+    # Uncomment this to push the built site to fatiando/tmp-docs
+    # Does not work on forks! Only the fatiando/fatiando repo.
+    - bash ci-tools/push-tmp-docs.sh
 
 after_failure:
     - make pep8
