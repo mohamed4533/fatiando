@@ -16,8 +16,9 @@ echo "Preparing to push HTML to branch ${BRANCH} of ${USER}/${REPO}"
 
 if [ "$PYTHON" == "2.7" ] && [ "$TRAVIS_OS_NAME" == "linux" ];
 then
-    if [ "$TRAVIS_PULL_REQUEST" == "true" ];
+    if [ "$TRAVIS_PULL_REQUEST" != "false" ];
     then
+        echo "PR ${TRAVIS_PULL_REQUEST} will push HTML to ${USER}/${REPO}"
         echo -e "Copying generated files."
         cp -R doc/_build/html/ $HOME/keep
         # Go to home and setup git
@@ -44,7 +45,7 @@ then
         # add, commit and push files
         echo -e "Add and commit changes"
         git add -f .
-        git commit -m "Travis build $TRAVIS_BUILD_NUMBER. Triggered by $TRAVIS_COMMIT"
+        git commit -m "Travis build $TRAVIS_BUILD_NUMBER. Triggered by $TRAVIS_COMMIT from PR ${TRAVIS_PULL_REQUEST}"
         echo -e "Pushing..."
         git push -fq origin ${BRANCH} > /dev/null
         echo -e "Finished uploading generated files."
