@@ -2,7 +2,8 @@
 Simple prism model
 ------------------
 
-Create a simple geologic model using rectangular prisms and plot it in 3D with
+Create a simple geologic model using rectangular prisms
+(:class:`fatiando.mesher.Prism`) and plot it in 3D with
 :mod:`fatiando.vis.myv`.
 
 """
