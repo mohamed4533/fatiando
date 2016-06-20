@@ -1,2 +1,2 @@
-Grids and point scatters
-------------------------
+Grid generation and manipulation
+--------------------------------

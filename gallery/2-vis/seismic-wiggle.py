@@ -1,6 +1,6 @@
 """
-Seismic data with wiggles
--------------------------
+Plotting seismic data with wiggles
+-----------------------------------
 
 One way to plot seismic data is using black and white wiggles.
 Function :func:`fatiando.vis.mpl.seismic_wiggle` does exactly this.
