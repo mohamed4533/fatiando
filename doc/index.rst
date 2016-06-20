@@ -179,7 +179,7 @@ install Fatiando.
 Once you have everything installed,
 take a look at the :ref:`Documentation <docs>`
 for a detailed tour of the library.
-You can also browse the :ref:`Cookbook <cookbook>`
+You can also browse the :ref:`Gallery <gallery>` and :ref:`Cookbook <cookbook>`
 for examples of what Fatiando can do.
 
 Keep up-to-date with the project by signing up to our `mailing list`_.
