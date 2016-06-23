@@ -52,12 +52,39 @@ __version__ = get_versions()['version']
 __commit__ = get_versions()['full']
 del get_versions
 
-def test(verbose=False, coverage=False):
+
+def test(doctest=True, verbose=False, coverage=False):
+    """
+    Run the test suite for Fatiando a Terra.
+
+    Uses `py.test <http://pytest.org/>`__ to discover and run the tests. If you
+    haven't already, you can install it with `conda
+    <http://conda.pydata.org/>`__ or `pip <https://pip.pypa.io>`__.
+
+    Parameters:
+
+    * doctest : bool
+        If ``True``, will run the doctests as well (code examples that start
+        with a ``>>>`` in the docs).
+    * verbose : bool
+        If ``True``, will print extra information during the test run.
+    * coverage : bool
+        If ``True``, will run test coverage analysis on the code as well.
+        Requires ``pytest-cov``.
+
+    Returns:
+
+    * exit_code : int
+        The exit code for the test run. If ``0``, then all tests pass.
+
+    """
     import pytest
-    args = ['--doctest-modules', '--pyargs']
+    args = ['--pyargs']
     if verbose:
         args.append('-v')
     if coverage:
         args.append('--cov=fatiando')
+    if doctest:
+        args.append('--doctest-modules')
     args.append('fatiando')
     return pytest.main(args)

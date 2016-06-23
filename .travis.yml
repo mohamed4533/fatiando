@@ -59,11 +59,9 @@ script:
     # version of the package.
     - pwd; python -c "import fatiando; assert fatiando.test(verbose=True, coverage=True) == 0, 'Tests failed'" && cp .coverage ..
     - cd ..; pwd
+    - make pep8
     - bash ci/build-docs.sh
 
 after_success:
     - coveralls
     - bash ci/update-website.sh
-
-after_failure:
-    - make pep8

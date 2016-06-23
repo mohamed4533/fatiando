@@ -1,6 +1,7 @@
 # Build, package, test, and clean Fatiando
 
 TESTDIR=tmp-test-dir-with-unique-name
+PEP8ARGS=--show-source --ignore=W503,E226,E241 --exclude=_version.py
 
 help:
 	@echo "Commands:"
@@ -35,11 +36,10 @@ coverage:
 	rm -r $(TESTDIR)
 
 pep8:
-	pep8 --show-source --ignore=W503,E226,E241\
-		--exclude=_version.py fatiando test cookbook setup.py
+	pep8 $(PEP8ARGS) fatiando cookbook gallery setup.py
 
 pep8-stats:
-	pep8 --exclude=_version.py --statistics -qq fatiando test cookbook setup.py
+	pep8 $(PEP8ARGS) --statistics -qq fatiando cookbook gallery setup.py
 
 clean:
 	find . -name "*.so" -exec rm -v {} \;
