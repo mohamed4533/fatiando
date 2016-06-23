@@ -47,10 +47,15 @@ install:
     - pip install dist/fatiando-*.tar.gz
     # Check that versioneer got the correct version. Do this in a tmp dir to
     # make sure I'm importing the installed version.
-    - mkdir tmp; cd tmp; python -c "import fatiando; print(fatiando.__version__)"; cd ..
+    - mkdir -p tmp
+    - cd tmp; python -c "import fatiando; print(fatiando.__version__)"; cd
 
 script:
-    - mkdir -p tmp; cd tmp; python -c "import fatiando; fatiando.test(verbose=True, coverage=True)"; cd ..
+    - mkdir -p tmp
+    # Use the 'fatiando.test()' command to make sure we're testing an installed
+    # version of the package.
+    - cd tmp; python -c "import fatiando; assert fatiando.test(verbose=True, coverage=True) == 0, 'Tests failed'"
+    - cd
     - bash ci/build-docs.sh
 
 after_success:
