@@ -27,8 +27,8 @@ before_install:
     # Get Miniconda from Continuum
     # Need to source the script to set the PATH variable in this environment
     # (not the scripts environment)
-    - source ci-tools/install-miniconda.sh
-    - cp ci-tools/matplotlibrc .
+    - source ci/install-miniconda.sh
+    - cp ci/matplotlibrc .
     # Create a conda env to install required libraries
     - conda update --yes conda
     - conda create -n testenv --yes pip python=$PYTHON
