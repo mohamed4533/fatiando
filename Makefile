@@ -24,14 +24,14 @@ test:
 	# Run a tmp folder to make sure the tests are run on the installed version
 	# of Fatiando
 	mkdir $(TESTDIR)
-	cd $(TESTDIR); py.test --doctest-modules --pyargs fatiando
+	cd $(TESTDIR); python -c "import fatiando; fatiando.test()"
 	rm -r $(TESTDIR)
 
 coverage:
 	# Run a tmp folder to make sure the tests are run on the installed version
 	# of Fatiando
 	mkdir $(TESTDIR)
-	cd $(TESTDIR); py.test --doctest-modules --cov=fatiando --pyargs fatiando
+	cd $(TESTDIR); python -c "import fatiando; fatiando.test(coverage=True)"
 	rm -r $(TESTDIR)
 
 pep8:
