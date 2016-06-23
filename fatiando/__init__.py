@@ -51,3 +51,13 @@ from ._version import get_versions
 __version__ = get_versions()['version']
 __commit__ = get_versions()['full']
 del get_versions
+
+def test(verbose=False, coverage=False):
+    import pytest
+    args = ['--doctest-modules', '--pyargs']
+    if verbose:
+        args.append('-v')
+    if coverage:
+        args.append('--cov=fatiando')
+    args.append('fatiando')
+    return pytest.main(args)

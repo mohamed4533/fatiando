@@ -1,4 +1,6 @@
-# Build, package and clean Fatiando
+# Build, package, test, and clean Fatiando
+
+TESTDIR=tmp-test-dir-with-unique-name
 
 help:
 	@echo "Commands:"
@@ -18,12 +20,19 @@ develop:
 cython:
 	python setup.py build_ext --inplace --cython
 
-.PHONY: test
 test:
-	nosetests --with-doctest -v fatiando test/
+	# Run a tmp folder to make sure the tests are run on the installed version
+	# of Fatiando
+	mkdir $(TESTDIR)
+	cd $(TESTDIR); py.test --doctest-modules --pyargs fatiando
+	rm -r $(TESTDIR)
 
 coverage:
-	nosetests --with-doctest --with-coverage --cover-package=fatiando fatiando/ test/
+	# Run a tmp folder to make sure the tests are run on the installed version
+	# of Fatiando
+	mkdir $(TESTDIR)
+	cd $(TESTDIR); py.test --doctest-modules --cov=fatiando --pyargs fatiando
+	rm -r $(TESTDIR)
 
 pep8:
 	pep8 --show-source --ignore=W503,E226,E241\
@@ -43,3 +52,4 @@ clean:
 	rm -rvf crust2.tar.gz cookbook/crust2.tar.gz
 	rm -rvf bouguer_alps_egm08.grd cookbook/bouguer_alps_egm08.grd
 	rm -rvf *.gdf cookbook/*.gdf
+	rm -rvf $(TESTDIR)
