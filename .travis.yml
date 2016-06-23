@@ -48,14 +48,17 @@ install:
     # Check that versioneer got the correct version. Do this in a tmp dir to
     # make sure I'm importing the installed version.
     - mkdir -p tmp
-    - cd tmp; python -c "import fatiando; print(fatiando.__version__)"; cd
+    - cd tmp; pwd
+    - pwd; python -c "import fatiando; print(fatiando.__version__)"
+    - cd ..; pwd
 
 script:
     - mkdir -p tmp
+    - cd tmp; pwd
     # Use the 'fatiando.test()' command to make sure we're testing an installed
     # version of the package.
-    - cd tmp; python -c "import fatiando; assert fatiando.test(verbose=True, coverage=True) == 0, 'Tests failed'"
-    - cd
+    - pwd; python -c "import fatiando; assert fatiando.test(verbose=True, coverage=True) == 0, 'Tests failed'"
+    - cd ..; pwd
     - bash ci/build-docs.sh
 
 after_success:
